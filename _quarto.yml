@@ -1,0 +1,39 @@
+project:
+  type: website
+
+website:
+  title: "Gustavo Hoffmann Moreira"
+  description: "Personal academic website of Gustavo Hoffmann Moreira — PhD candidate in Organizations and Markets (Applied Economics), UFPel."
+  # After creating the GitHub repository, set this to your GitHub Pages URL,
+  # e.g. https://USERNAME.github.io or https://USERNAME.github.io/REPO
+  # site-url: https://USERNAME.github.io
+  navbar:
+    left:
+      - href: index.qmd
+        text: About
+      - href: research/index.qmd
+        text: Research
+      - href: teaching.qmd
+        text: Teaching
+      - href: cv.qmd
+        text: CV
+    right:
+      - icon: envelope
+        href: mailto:gustavo@gakusai.net
+        aria-label: Email
+      - icon: linkedin
+        href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+        aria-label: LinkedIn
+  page-footer:
+    left: "© 2026 Gustavo Hoffmann Moreira"
+    right: "Built with [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    lang: en
+
+execute:
+  freeze: auto

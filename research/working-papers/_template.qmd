@@ -1,0 +1,20 @@
+---
+# TEMPLATE — copy this file, remove the leading underscore from the new
+# file name (files starting with "_" are not rendered), and fill it in.
+title: "Paper Title Here"
+author:
+  - Gustavo Hoffmann Moreira
+  - Coauthor Name
+date: 2026-07-17
+description: "One- or two-sentence summary shown in the Research listing."
+categories: [working paper]
+---
+
+## Abstract
+
+Paste the abstract here.
+
+## Downloads
+
+- [PDF (latest draft)](paper.pdf) <!-- put the PDF in this folder -->
+- [SSRN](https://ssrn.com/abstract=XXXXXXX)

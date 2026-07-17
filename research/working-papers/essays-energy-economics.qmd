@@ -1,0 +1,18 @@
+---
+title: "Essays in Energy Economics"
+author:
+  - Gustavo Hoffmann Moreira
+date: 2026-01-01
+description: "PhD dissertation research in progress at UFPel, supervised by Daniel de Abreu Pereira Uhr. Draft chapters will be posted here as working papers become available."
+categories: [work in progress, energy economics]
+---
+
+## Abstract
+
+My PhD dissertation is a collection of essays in energy economics, developed in the Graduate Program in Organizations and Markets at the Federal University of Pelotas (UFPel), under the supervision of Daniel de Abreu Pereira Uhr.
+
+Draft chapters will be posted on this page as they reach working-paper stage.
+
+## Status
+
+In progress (2023–).

@@ -1,0 +1,45 @@
+---
+title: "Gustavo Hoffmann Moreira"
+image: profile.svg
+about:
+  template: trestles
+  image-shape: round
+  image-width: 12em
+  links:
+    - icon: mortarboard-fill
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=TyjtIkMAAAAJ
+    - icon: person-vcard
+      text: ORCID
+      href: https://orcid.org/0000-0003-0827-2521
+    - icon: journal-text
+      text: Lattes CV
+      href: http://lattes.cnpq.br/6547677638808247
+    - icon: linkedin
+      text: LinkedIn
+      href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+    - icon: envelope
+      text: Email
+      href: mailto:gustavo@gakusai.net
+---
+
+I am a PhD candidate in **Organizations and Markets** (Applied Economics) at the Federal University of Pelotas (UFPel), Brazil, where I work on **energy economics** under the supervision of Daniel de Abreu Pereira Uhr. My dissertation is a collection of essays in energy economics, and my broader research interests include **law and economics**, **jurimetrics**, and the economics of public policy.
+
+My background is interdisciplinary: I hold degrees in Law (UFPel), Chemical Engineering (FURG), and Portuguese–Japanese Language and Literature (UNIFRAN), and a Master's in Organizations and Markets (UFPel), with a thesis on the effects of harsher criminal laws — the case of the Maria da Penha Law in Brazil.
+
+Alongside my research, I work as an administrative officer at UFPel, teach Japanese at Centro de Idiomas MAB, and work in localization for Crunchyroll and MX International.
+
+## Interests
+
+- Energy economics and energy law
+- Law and economics · jurimetrics
+- Applied microeconometrics and public policy evaluation
+- Language education and translation/localization studies
+
+## Education
+
+- **PhD in Organizations and Markets** (in progress, 2023–) — UFPel
+- **MSc in Organizations and Markets** (2017) — UFPel
+- **BA in Portuguese and Japanese** (2023) — UNIFRAN
+- **LLB in Law** (2013) — UFPel
+- **BSc in Chemical Engineering** (2013) — FURG

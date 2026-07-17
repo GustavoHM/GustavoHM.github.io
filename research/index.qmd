@@ -1,0 +1,39 @@
+---
+title: "Research"
+listing:
+  - id: working-papers
+    contents: working-papers
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: publications
+    contents: publications.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: other
+    contents: other.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+---
+
+My research sits at the intersection of applied economics and law, with a current focus on **energy economics** (PhD dissertation) and **jurimetrics**. Below you find my working papers, publications, and other academic output. For a complete record, see my [Lattes CV](http://lattes.cnpq.br/6547677638808247) or [Google Scholar](https://scholar.google.com/citations?user=TyjtIkMAAAAJ).
+
+## Working papers & work in progress
+
+:::{#working-papers}
+:::
+
+## Publications
+
+:::{#publications}
+:::
+
+## Other output
+
+:::{#other}
+:::

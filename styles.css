@@ -1,0 +1,25 @@
+/* Small refinements on top of the cosmo theme */
+
+h1, h2, .navbar-brand {
+  font-weight: 600;
+}
+
+h2 {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.3rem;
+  margin-top: 2rem;
+}
+
+.quarto-listing .listing-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.quarto-listing .listing-author,
+.quarto-listing .listing-date {
+  color: #555;
+}
+
+.about-links .about-link {
+  border-radius: 6px;
+}
