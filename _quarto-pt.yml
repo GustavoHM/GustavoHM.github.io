@@ -1,0 +1,39 @@
+# Versão em português — renderizada em /pt/ (perfil "pt").
+# Renderiza apenas a pasta pt/ em _site-pt; o build.sh copia o resultado
+# para _site/pt/ depois de renderizar a versão em inglês.
+project:
+  output-dir: _site-pt
+  render:
+    - "pt/"
+
+website:
+  search: false
+  navbar:
+    left:
+      - href: pt/index.qmd
+        text: Sobre
+      - href: pt/pesquisa/index.qmd
+        text: Pesquisa
+      - href: pt/ensino.qmd
+        text: Ensino
+      - href: pt/cv.qmd
+        text: CV
+    right:
+      - text: "English"
+        href: /
+      - icon: envelope
+        href: mailto:gustavo@gakusai.net
+        aria-label: E-mail
+      - icon: linkedin
+        href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+        aria-label: LinkedIn
+  page-footer:
+    left: "© 2026 Gustavo Hoffmann Moreira"
+    right: "Feito com [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    lang: pt-BR

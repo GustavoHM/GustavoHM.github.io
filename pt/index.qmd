@@ -1,0 +1,45 @@
+---
+title: "Gustavo Hoffmann Moreira"
+image: ../profile.svg
+about:
+  template: trestles
+  image-shape: round
+  image-width: 12em
+  links:
+    - icon: mortarboard-fill
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=TyjtIkMAAAAJ
+    - icon: person-vcard
+      text: ORCID
+      href: https://orcid.org/0000-0003-0827-2521
+    - icon: journal-text
+      text: Currículo Lattes
+      href: http://lattes.cnpq.br/6547677638808247
+    - icon: linkedin
+      text: LinkedIn
+      href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+    - icon: envelope
+      text: E-mail
+      href: mailto:gustavo@gakusai.net
+---
+
+Sou doutorando em **Organizações e Mercados** (Economia Aplicada) na Universidade Federal de Pelotas (UFPel), onde pesquiso **economia da energia** sob orientação de Daniel de Abreu Pereira Uhr. Minha tese é uma coleção de ensaios em economia da energia, e meus interesses de pesquisa mais amplos incluem **análise econômica do direito**, **jurimetria** e economia de políticas públicas.
+
+Minha formação é interdisciplinar: sou graduado em Direito (UFPel), Engenharia Química (FURG) e Letras Português–Japonês (UNIFRAN), e mestre em Organizações e Mercados (UFPel), com dissertação sobre os efeitos de leis criminais mais duras — o caso da Lei Maria da Penha no Brasil.
+
+Além da pesquisa, sou assistente em administração na UFPel, instrutor de língua japonesa no Centro de Idiomas MAB e atuo em localização para a Crunchyroll e a MX International.
+
+## Interesses
+
+- Economia da energia e direito de energia
+- Análise econômica do direito · jurimetria
+- Microeconometria aplicada e avaliação de políticas públicas
+- Ensino de línguas e estudos de tradução/localização
+
+## Formação
+
+- **Doutorado em Organizações e Mercados** (em andamento, 2023–) — UFPel
+- **Mestrado em Organizações e Mercados** (2017) — UFPel
+- **Licenciatura em Letras — Português e Japonês** (2023) — UNIFRAN
+- **Bacharelado em Direito** (2013) — UFPel
+- **Bacharelado em Engenharia Química** (2013) — FURG

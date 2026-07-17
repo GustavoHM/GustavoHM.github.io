@@ -1,5 +1,11 @@
+# Shared base configuration. Language-specific settings (navbar, footer,
+# rendered files) live in _quarto-en.yml and _quarto-pt.yml.
+# Build both versions with ./build.sh (EN at /, PT at /pt/).
 project:
   type: website
+
+profile:
+  default: en
 
 website:
   title: "Gustavo Hoffmann Moreira"
@@ -7,33 +13,6 @@ website:
   # After creating the GitHub repository, set this to your GitHub Pages URL,
   # e.g. https://USERNAME.github.io or https://USERNAME.github.io/REPO
   # site-url: https://USERNAME.github.io
-  navbar:
-    left:
-      - href: index.qmd
-        text: About
-      - href: research/index.qmd
-        text: Research
-      - href: teaching.qmd
-        text: Teaching
-      - href: cv.qmd
-        text: CV
-    right:
-      - icon: envelope
-        href: mailto:gustavo@gakusai.net
-        aria-label: Email
-      - icon: linkedin
-        href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
-        aria-label: LinkedIn
-  page-footer:
-    left: "© 2026 Gustavo Hoffmann Moreira"
-    right: "Built with [Quarto](https://quarto.org)"
-
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: false
-    lang: en
 
 execute:
   freeze: auto

@@ -1,0 +1,39 @@
+---
+title: "Pesquisa"
+listing:
+  - id: trabalhos
+    contents: trabalhos.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: publicacoes
+    contents: publicacoes.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: outros
+    contents: outros.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+---
+
+Minha pesquisa está na interseção entre economia aplicada e direito, com foco atual em **economia da energia** (tese de doutorado) e **jurimetria**. Abaixo estão meus working papers, publicações e demais produções acadêmicas. Para o registro completo, consulte meu [Currículo Lattes](http://lattes.cnpq.br/6547677638808247) ou o [Google Scholar](https://scholar.google.com/citations?user=TyjtIkMAAAAJ).
+
+## Working papers e trabalhos em andamento
+
+:::{#trabalhos}
+:::
+
+## Publicações
+
+:::{#publicacoes}
+:::
+
+## Outras produções
+
+:::{#outros}
+:::

@@ -1,0 +1,8 @@
+# Working papers e trabalhos em andamento. Espelha research/working-papers/:
+# ao criar um novo working paper em inglês, adicione uma entrada aqui com o
+# "path" apontando para a página do paper.
+- title: "Ensaios em Economia da Energia"
+  author: "Gustavo Hoffmann Moreira"
+  date: 2026-01-01
+  description: "Pesquisa de doutorado em andamento na UFPel, sob orientação de Daniel de Abreu Pereira Uhr. Capítulos serão disponibilizados aqui à medida que se tornarem working papers. (Página em inglês.)"
+  path: "../../research/working-papers/essays-energy-economics.html"
