@@ -1,0 +1,61 @@
+---
+title: "研究"
+listing:
+  - id: working-papers
+    contents: working-papers.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY年"
+  - id: theses
+    contents: theses.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY年"
+  - id: articles
+    contents: articles.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY年"
+  - id: abstracts
+    contents: abstracts.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY年"
+  - id: other
+    contents: other.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY年"
+---
+
+応用経済学と法学の接点を研究しており、現在は**エネルギー経済学**（博士論文）と**計量法学**に重点を置いています。以下にワーキングペーパー、発表論文、その他の業績を掲載します。論文題目は原語（主にポルトガル語）のままです。網羅的な一覧は [Lattes](http://lattes.cnpq.br/6547677638808247) または [Google Scholar](https://scholar.google.com/citations?user=TyjtIkMAAAAJ) をご覧ください。
+
+## ワーキングペーパー・進行中の研究
+
+:::{#working-papers}
+:::
+
+## 学位論文
+
+:::{#theses}
+:::
+
+## 学術論文
+
+:::{#articles}
+:::
+
+## 拡張要旨・会議録
+
+:::{#abstracts}
+:::
+
+## その他の業績
+
+:::{#other}
+:::

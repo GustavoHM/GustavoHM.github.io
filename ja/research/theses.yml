@@ -1,0 +1,19 @@
+# 学位論文：学士論文（TCC）、専門課程修了論文、修士論文、博士論文。
+# 1項目1エントリー。研究ページが自動で一覧にします。"path" は題目のリンク先です。
+- title: "Ensino a Distância e Metodologias Ativas para a Aquisição de Japonês como Língua Estrangeira"
+  author: "Gustavo H. Moreira"
+  date: 2020-01-01
+  description: "教育学専門課程（lato sensu）修了論文。外国語としての日本語習得における遠隔教育とアクティブ・ラーニングを扱う。UFPel、2020年。"
+  path: "http://lattes.cnpq.br/6547677638808247"
+
+- title: "Efeito da criação de delegacias especializadas em atendimento à mulher em combinação com a Lei Maria da Penha para a redução da violência doméstica no estado do Rio Grande do Sul"
+  author: "Gustavo H. Moreira"
+  date: 2017-05-11
+  description: "修士論文、UFPel 大学院「組織と市場」プログラム（PPGOM）、指導教員 Daniel A. P. Uhr。女性専門警察署の設置がリオグランデ・ド・スル州の家庭内暴力に与えた効果を、マリア・ダ・ペーニャ法と併せて応用経済学の手法で推定。"
+  path: "https://wp.ufpel.edu.br/ppgom/ensino/dissertacoes/"
+
+- title: "A Similitude na Forma em que as Constituições Brasileira de 1988 e Japonesa de 1946 Abrigaram a Garantia ao Devido Processo Legal"
+  author: "Gustavo H. Moreira"
+  date: 2011-01-03
+  description: "法学部卒業論文。1988年ブラジル憲法と日本国憲法が適正手続の保障をどのように規定したかを比較した比較憲法研究。UFPel、2011年。"
+  path: "http://lattes.cnpq.br/6547677638808247"

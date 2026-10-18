@@ -1,0 +1,45 @@
+---
+title: "Gustavo Hoffmann Moreira"
+image: ../profile.svg
+about:
+  template: trestles
+  image-shape: round
+  image-width: 12em
+  links:
+    - icon: mortarboard-fill
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=TyjtIkMAAAAJ
+    - icon: person-vcard
+      text: ORCID
+      href: https://orcid.org/0000-0003-0827-2521
+    - icon: journal-text
+      text: Lattes（業績）
+      href: http://lattes.cnpq.br/6547677638808247
+    - icon: linkedin
+      text: LinkedIn
+      href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+    - icon: envelope
+      text: メール
+      href: mailto:gustavo@gakusai.net
+---
+
+ブラジルのペロタス連邦大学（UFPel）大学院「組織と市場」プログラム（応用経済学）博士課程に在籍し、Daniel de Abreu Pereira Uhr 教授の指導のもとで**エネルギー経済学**を研究しています。博士論文はエネルギー経済学に関する論文集で、より広い研究関心は**法と経済学**、**計量法学（ジュリメトリクス）**、公共政策の経済学にあります。
+
+学際的な経歴を持ち、法学（UFPel）、化学工学（FURG）、ポルトガル語・日本語（UNIFRAN）の学士号と、「組織と市場」の修士号（UFPel）を取得しています。修士論文では、刑罰強化の効果について、ブラジルのマリア・ダ・ペーニャ法を事例に分析しました。
+
+研究のかたわら、UFPel の事務職員として勤務し、Centro de Idiomas MAB で日本語を教え、Crunchyroll と MX International でローカライズの仕事に携わっています。
+
+## 研究関心
+
+- エネルギー経済学・エネルギー法
+- 法と経済学・計量法学
+- 応用ミクロ計量経済学・公共政策評価
+- 語学教育・翻訳／ローカライズ研究
+
+## 学歴
+
+- **博士（組織と市場）**（在学中、2023年〜）— UFPel
+- **修士（組織と市場）**（2017年）— UFPel
+- **学士（ポルトガル語・日本語）**（2023年）— UNIFRAN
+- **学士（法学）**（2013年）— UFPel
+- **学士（化学工学）**（2013年）— FURG

@@ -1,7 +1,7 @@
 # Personal academic website — Gustavo Hoffmann Moreira
 
 Multilingual site built with [Quarto](https://quarto.org), deployed to GitHub Pages:
-English at `/`, Portuguese at `/pt/` (languages are listed in `_idiomas.toml`). Each
+English at `/`, Portuguese at `/pt/`, Japanese at `/ja/` (languages are listed in `_idiomas.toml`). Each
 language has its own profile and navbar (`_quarto-<code>.yml`) with links to switch.
 
 ## Local preview
@@ -33,11 +33,12 @@ Most content changes need a small edit in both languages:
 
 - **Working paper / preprint**: copy `research/working-papers/_template.qmd` to a new
   file (no leading underscore), fill in title/abstract, drop the PDF next to it.
-  Then add a matching entry in `pt/pesquisa/trabalhos.yml` pointing at the paper page.
+  Then add a matching entry in `pt/pesquisa/trabalhos.yml` and `ja/research/working-papers.yml`
+  pointing at the paper page.
 - **Publication**: add an entry to `research/publications.yml` and
-  `pt/pesquisa/publicacoes.yml` (point `path` at the DOI or journal page).
+  `pt/pesquisa/publicacoes.yml` / `ja/research/articles.yml` (point `path` at the DOI or journal page).
 - **Other output** (translations, talks): `research/other.yml` and
-  `pt/pesquisa/outros.yml`.
+  `pt/pesquisa/outros.yml` / `ja/research/other.yml`.
 - **Photo**: replace `profile.svg` with a real photo (e.g. `profile.jpg`) and update
   the `image:` field in `index.qmd` and `pt/index.qmd`.
 
@@ -47,8 +48,10 @@ Most content changes need a small edit in both languages:
 _quarto.yml         shared config      build.sh              renders every profile into _site/
 _quarto-en.yml      English profile    index/teaching/cv.qmd  English pages
 _quarto-pt.yml      Portuguese profile pt/                    Portuguese pages
+_quarto-ja.yml      Japanese profile   ja/                    Japanese pages
 research/           EN research page + working-papers/ + publication lists
 pt/pesquisa/        PT research page + translated lists
+ja/research/        JA research page + translated lists
 ```
 
 ## Dashboard (`painel/`)

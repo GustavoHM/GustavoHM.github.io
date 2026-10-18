@@ -1,0 +1,14 @@
+# ワーキングペーパーと進行中の研究。research/working-papers/ と対応しています。
+# 英語版で新しいワーキングペーパーを作ったら、ここにも "path" をその論文の
+# ページに向けたエントリーを追加してください。
+- title: "Optimal tariff incidence on distributed generation in Brazil: abatement cost, private–social misalignment, and transition under Law No. 14,300/2022"
+  author: "Gustavo Hoffmann Moreira, Daniel de Abreu Pereira Uhr"
+  date: 2026-01-01
+  description: "ブラジル経済学会全国大会（ANPEC）2026年 発表。法律第14.300/2022号のもとで、ネットメータリングされる分散型発電に配電網費用をどの程度負担させるのが最適かを分析。（英語ページ）"
+  path: "../../research/working-papers/dg-tariff-incidence-brazil.html"
+
+- title: "Essays in Energy Economics"
+  author: "Gustavo Hoffmann Moreira"
+  date: 2026-01-01
+  description: "UFPel で進行中の博士論文研究（指導教員：Daniel de Abreu Pereira Uhr）。各章はワーキングペーパーになり次第ここに掲載します。（英語ページ）"
+  path: "../../research/working-papers/essays-energy-economics.html"

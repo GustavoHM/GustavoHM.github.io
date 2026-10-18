@@ -1,0 +1,42 @@
+# Versão em japonês — renderizada em /ja/ (perfil "ja").
+# Renderiza apenas a pasta ja/ em _site-ja; o build.sh copia o resultado
+# para _site/ja/ depois de renderizar a versão em inglês.
+project:
+  output-dir: _site-ja
+  render:
+    - "ja/"
+
+website:
+  search: false
+  navbar:
+    left:
+      - href: ja/index.qmd
+        text: プロフィール
+      - href: ja/research/index.qmd
+        text: 研究
+      - href: ja/teaching.qmd
+        text: 教育
+      - href: ja/cv.qmd
+        text: 履歴書
+    right:
+      - text: "English"
+        href: /
+      - text: "Português"
+        href: /pt/
+      - icon: envelope
+        href: mailto:gustavo@gakusai.net
+        aria-label: メール
+      - icon: linkedin
+        href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+        aria-label: LinkedIn
+  page-footer:
+    left: "© 2026 Gustavo Hoffmann Moreira"
+    right: "[Quarto](https://quarto.org) で作成"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    # Com região: um "lang: ja" seria lido como caminho por causa da pasta ja/.
+    lang: ja-JP

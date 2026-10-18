@@ -23,3 +23,10 @@ paginas = { sobre = "pt/index.qmd", pesquisa = "pt/pesquisa/index.qmd", postagen
 listas = { artigos = "pt/pesquisa/artigos.yml", resumos = "pt/pesquisa/resumos.yml", conclusao = "pt/pesquisa/conclusao.yml", outros = "pt/pesquisa/outros.yml" }
 postagens = "pt/postagens"
 lista_papers = "pt/pesquisa/trabalhos.yml"
+
+[[idioma]]
+codigo = "ja"
+nome = "日本語"
+paginas = { sobre = "ja/index.qmd", pesquisa = "ja/research/index.qmd", ensino = "ja/teaching.qmd", cv = "ja/cv.qmd" }
+listas = { artigos = "ja/research/articles.yml", resumos = "ja/research/abstracts.yml", conclusao = "ja/research/theses.yml", outros = "ja/research/other.yml" }
+lista_papers = "ja/research/working-papers.yml"
