@@ -1,0 +1,21 @@
+---
+title: "Optimal tariff incidence on distributed generation in Brazil: abatement cost, private–social misalignment, and transition under Law No. 14,300/2022"
+author:
+  - Gustavo Hoffmann Moreira
+  - Daniel de Abreu Pereira Uhr
+date: 2026-01-01
+description: "Presented at the ANPEC National Meeting (Encontro Nacional de Economia), 2026. Optimal incidence of the distribution-network charge on compensated distributed generation under Law No. 14,300/2022."
+categories: [working paper, energy economics]
+---
+
+## Abstract
+
+This paper studies the optimal incidence of the distribution-network charge on compensated distributed generation (DG) in Brazil using a model that combines income-heterogeneous households, photovoltaic capital accumulation, revenue-neutral network pricing, and an external valuation of carbon. The calibration weights the full network component approved by the Brazilian Electricity Regulatory Agency by 83.6 million residential consumer units, which places the network charge at about BRL 259/MWh. Although the net abatement cost is much lower than the gross cost, its sign depends on the conventional generation displaced. The incidence factor aligns private and social incentives in four of nine avoided-cost and carbon-price combinations. In the central case, the steady-state optimum reaches full compensation from the median SCC on, whereas the transition optimum is 0.60. The dynamic solution incorporates the endogenous marginal-utility ratio in the photovoltaic Euler equation and remains stable across horizons. A linear ramp and the statutory schedule yield virtually identical welfare, although an immediate jump to 90% is preferred in the partial-transition exercise. Finally, aggregate effects are small in the central case but grow in stress tests, while incidence across income groups is regressive.
+
+## Presented at
+
+ANPEC National Meeting (Encontro Nacional de Economia), 2026.
+
+## Downloads
+
+- [PDF (ANPEC)](https://www.anpec.org.br/encontro/2026/submissao/files_I/i11-78e96a0d5666747da904774c4be9602f.pdf)

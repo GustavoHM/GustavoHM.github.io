@@ -1,6 +1,12 @@
 # Working papers e trabalhos em andamento. Espelha research/working-papers/:
 # ao criar um novo working paper em inglês, adicione uma entrada aqui com o
 # "path" apontando para a página do paper.
+- title: "Incidência tarifária ótima sobre a geração distribuída no Brasil: custo de abatimento, desalinhamento privado–social e transição sob a Lei nº 14.300/2022"
+  author: "Gustavo Hoffmann Moreira, Daniel de Abreu Pereira Uhr"
+  date: 2026-01-01
+  description: "Apresentado no Encontro Nacional de Economia (ANPEC), 2026. Incidência ótima do encargo de rede sobre a geração distribuída compensada sob a Lei nº 14.300/2022. (Página em inglês.)"
+  path: "../../research/working-papers/dg-tariff-incidence-brazil.html"
+
 - title: "Ensaios em Economia da Energia"
   author: "Gustavo Hoffmann Moreira"
   date: 2026-01-01
