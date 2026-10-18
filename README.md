@@ -1,13 +1,13 @@
 # Personal academic website — Gustavo Hoffmann Moreira
 
-Bilingual site built with [Quarto](https://quarto.org), deployed to GitHub Pages:
-English at `/`, Portuguese at `/pt/`. Each language has its own navbar
-(configured in `_quarto-en.yml` / `_quarto-pt.yml`) with a link to switch.
+Multilingual site built with [Quarto](https://quarto.org), deployed to GitHub Pages:
+English at `/`, Portuguese at `/pt/` (languages are listed in `_idiomas.toml`). Each
+language has its own profile and navbar (`_quarto-<code>.yml`) with links to switch.
 
 ## Local preview
 
 ```sh
-./build.sh                        # render both languages into _site/
+./build.sh                        # render every language profile into _site/
 python3 -m http.server 4322 --directory _site   # browse the full bilingual site
 
 quarto preview                    # live-reload preview (English version only)
@@ -44,9 +44,47 @@ Most content changes need a small edit in both languages:
 ## Layout
 
 ```
-_quarto.yml         shared config      build.sh              renders EN + PT into _site/
+_quarto.yml         shared config      build.sh              renders every profile into _site/
 _quarto-en.yml      English profile    index/teaching/cv.qmd  English pages
 _quarto-pt.yml      Portuguese profile pt/                    Portuguese pages
 research/           EN research page + working-papers/ + publication lists
 pt/pesquisa/        PT research page + translated lists
 ```
+
+## Dashboard (`painel/`)
+
+Native macOS app (Rust + egui) for editing the site in every language listed in
+`_idiomas.toml`. Build and install it into `~/Applications/Painel do Site.app` with:
+
+```sh
+painel/criar-app.sh
+```
+
+- **Postagens**: per-language posts (each language with a `postagens` folder).
+  Saving/autosave keeps `draft: true` on the computer; **Publicar no site** sets
+  `draft: false`, test-renders, commits only that post's folder and pushes `main`.
+- **Páginas**: About, Research intro, posts listing page, Teaching, CV — any two
+  languages side by side. Only `title` and the text are edited; `:::{#id}` listing
+  slots are protected.
+- **Pesquisa**: form editor for the research lists, one file per language, items
+  matched by position; date and link are shared, title/authors/description per language.
+- **Papers**: working-paper pages (root language) with their entry in every other
+  language's `lista_papers` kept in sync; PDFs go in `working-papers/files/<slug>/`.
+- **Site › Menu**: navbar items of every language in one table — labels per language,
+  reorder, show/hide. **Site › Configurações**: site title and description, footer per
+  language, profile photo and the About-page links (icon and URL shared, text per language).
+- **Nova página / Remover página**: creates a page in every language (`<slug>.qmd`,
+  `<code>/<slug>.qmd`), registers it in `_idiomas.toml` and adds it to the menu;
+  removal undoes all three and sends it. About, Research and Posts are protected.
+- **Several sites**: the site picker at the top keeps a list of Quarto sites
+  (`~/Library/Application Support/Painel do Site/sites.txt`). A site without
+  `_idiomas.toml` gets a starter one built from its pages; single-language sites without
+  `_quarto-<code>.yml` profiles use `_quarto.yml` for the menu and footer.
+- **Línguas…**: adds a language by copying the structure of an existing one
+  (e.g. `pt/` → `ja/`), creating `_quarto-<code>.yml`, adding the language link to
+  every navbar and registering it in `_idiomas.toml`. Nothing is published until
+  you click **Enviar configuração ao site**.
+
+Every send commits only the files of what is open. Changes to `painel/` alone don't
+trigger a site rebuild (`paths-ignore` in the workflow). Tests (`cd painel && cargo test`)
+run against a throwaway copy of the site with a local git remote.

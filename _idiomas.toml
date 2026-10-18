@@ -1,0 +1,25 @@
+# Línguas do site, lidas pelo Painel do Site (painel/).
+# A primeira é a língua da raiz (/); cada uma das outras fica em /<codigo>/ e
+# tem seu próprio perfil do Quarto, _quarto-<codigo>.yml (o build.sh renderiza
+# todos). O painel acrescenta um bloco aqui quando você cria uma língua nova.
+#
+#   paginas      páginas fixas, editadas lado a lado entre as línguas
+#   listas       listas da página de Pesquisa (pareadas pela posição dos itens)
+#   postagens    pasta das postagens desta língua (opcional)
+#   papers       pasta das páginas dos working papers (só na língua da raiz)
+#   lista_papers lista onde os working papers aparecem nesta língua (opcional)
+
+[[idioma]]
+codigo = "en"
+nome = "English"
+paginas = { sobre = "index.qmd", pesquisa = "research/index.qmd", ensino = "teaching.qmd", cv = "cv.qmd" }
+listas = { artigos = "research/articles.yml", resumos = "research/abstracts.yml", conclusao = "research/theses.yml", outros = "research/other.yml" }
+papers = "research/working-papers"
+
+[[idioma]]
+codigo = "pt"
+nome = "Português"
+paginas = { sobre = "pt/index.qmd", pesquisa = "pt/pesquisa/index.qmd", postagens = "pt/postagens/index.qmd", ensino = "pt/ensino.qmd", cv = "pt/cv.qmd" }
+listas = { artigos = "pt/pesquisa/artigos.yml", resumos = "pt/pesquisa/resumos.yml", conclusao = "pt/pesquisa/conclusao.yml", outros = "pt/pesquisa/outros.yml" }
+postagens = "pt/postagens"
+lista_papers = "pt/pesquisa/trabalhos.yml"

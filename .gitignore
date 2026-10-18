@@ -1,6 +1,9 @@
 /_site/
-/_site-pt/
+/_site-*/
 /.quarto/
 .DS_Store
 
 **/*.quarto_ipynb
+
+# Painel (app Rust)
+/painel/target/

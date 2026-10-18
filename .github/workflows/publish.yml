@@ -3,6 +3,9 @@ name: Publish site to GitHub Pages
 on:
   push:
     branches: [main]
+    # O código do painel não faz parte do site; mudar só ele não reconstrói nada.
+    paths-ignore:
+      - "painel/**"
   workflow_dispatch:
 
 permissions:

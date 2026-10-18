@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
-# Builds the full bilingual site into _site/:
-#   English at /  ·  Portuguese at /pt/
+# Builds the full multilingual site into _site/:
+#   the default profile (English) at /  ·  every other _quarto-<code>.yml at /<code>/
 set -euo pipefail
 cd "$(dirname "$0")"
 
 QUARTO="${QUARTO:-quarto}"
 command -v "$QUARTO" >/dev/null || QUARTO="$HOME/.local/bin/quarto"
 
-"$QUARTO" render --profile en
-"$QUARTO" render --profile pt
+ROOT=$(awk '/^profile:/{p=1} p && /default:/{print $2; exit}' _quarto.yml)
+"$QUARTO" render --profile "$ROOT"
 
-rm -rf _site/pt
-mkdir -p _site/pt
-cp -R _site-pt/pt/. _site/pt/
+for f in _quarto-*.yml; do
+  code="${f#_quarto-}"
+  code="${code%.yml}"
+  [ "$code" = "$ROOT" ] && continue
+  "$QUARTO" render --profile "$code"
+  rm -rf "_site/$code"
+  mkdir -p "_site/$code"
+  cp -R "_site-$code/$code/." "_site/$code/"
+done
 
-echo "Done. Bilingual site in _site/ (English at /, Portuguese at /pt/)."
+echo "Done. Site in _site/ ($ROOT at /, other languages at /<code>/)."
