@@ -19,9 +19,9 @@ website:
       - href: ja/cv.qmd
         text: 履歴書
     right:
-      - text: "English"
+      - text: "🌐 English"
         href: /
-      - text: "Português"
+      - text: "🇧🇷 Português"
         href: /pt/
       - icon: envelope
         href: mailto:gustavo@gakusai.net
