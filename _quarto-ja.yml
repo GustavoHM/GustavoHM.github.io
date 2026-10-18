@@ -29,6 +29,12 @@ website:
       - icon: linkedin
         href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
         aria-label: LinkedIn
+      - icon: github
+        href: https://github.com/GustavoHM
+        aria-label: GitHub
+      - icon: twitter-x
+        href: https://x.com/GustavoHoffmann
+        aria-label: X
   page-footer:
     left: "© 2026 Gustavo Hoffmann Moreira"
     right: "[Quarto](https://quarto.org) で作成"

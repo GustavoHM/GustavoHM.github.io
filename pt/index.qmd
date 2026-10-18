@@ -18,6 +18,12 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+    - icon: github
+      text: GitHub
+      href: https://github.com/GustavoHM
+    - icon: twitter-x
+      text: X
+      href: https://x.com/GustavoHoffmann
     - icon: envelope
       text: E-mail
       href: mailto:gustavo@gakusai.net
