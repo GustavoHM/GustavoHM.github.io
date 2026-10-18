@@ -1,0 +1,20 @@
+# Completion works: undergraduate final papers (TCC), specialization monographs,
+# master's dissertations, doctoral theses. One entry per item; the Research page
+# renders this list automatically. "path" is where the title links to.
+- title: "Ensino a Distância e Metodologias Ativas para a Aquisição de Japonês como Língua Estrangeira"
+  author: "Gustavo H. Moreira"
+  date: 2020-01-01
+  description: "Specialization (lato sensu) course final paper (TCC) in Education on distance learning and active-learning methodologies for Japanese as a foreign language, UFPel, 2020."
+  path: "http://lattes.cnpq.br/6547677638808247"
+
+- title: "Efeito da criação de delegacias especializadas em atendimento à mulher em combinação com a Lei Maria da Penha para a redução da violência doméstica no estado do Rio Grande do Sul"
+  author: "Gustavo H. Moreira"
+  date: 2017-05-11
+  description: "Master's dissertation, Graduate Program in Organizations and Markets (PPGOM), UFPel — advisor Daniel A. P. Uhr. An applied-economics analysis estimating the effect of specialized women's police stations on domestic violence in Rio Grande do Sul."
+  path: "https://wp.ufpel.edu.br/ppgom/ensino/dissertacoes/"
+
+- title: "A Similitude na Forma em que as Constituições Brasileira de 1988 e Japonesa de 1946 Abrigaram a Garantia ao Devido Processo Legal"
+  author: "Gustavo H. Moreira"
+  date: 2011-01-03
+  description: "Final paper (TCC) for the Law degree — a comparative constitutional law study on how the 1988 Brazilian and 1946 Japanese constitutions enshrined the guarantee of due process of law. UFPel, 2011."
+  path: "http://lattes.cnpq.br/6547677638808247"

@@ -7,8 +7,20 @@ listing:
     sort: "date desc"
     fields: [title, author, date, description]
     date-format: "YYYY"
-  - id: publicacoes
-    contents: publicacoes.yml
+  - id: conclusao
+    contents: conclusao.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: artigos
+    contents: artigos.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: resumos
+    contents: resumos.yml
     type: default
     sort: "date desc"
     fields: [title, author, date, description]
@@ -28,9 +40,19 @@ Minha pesquisa está na interseção entre economia aplicada e direito, com foco
 :::{#trabalhos}
 :::
 
-## Publicações
+## Trabalhos de conclusão
 
-:::{#publicacoes}
+:::{#conclusao}
+:::
+
+## Artigos completos
+
+:::{#artigos}
+:::
+
+## Resumos expandidos e anais
+
+:::{#resumos}
 :::
 
 ## Outras produções

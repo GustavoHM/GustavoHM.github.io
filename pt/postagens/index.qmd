@@ -1,0 +1,11 @@
+---
+title: "Postagens"
+listing:
+  contents: .
+  type: default
+  sort: "date desc"
+  fields: [title, date, description]
+  date-format: "DD/MM/YYYY"
+---
+
+Reflexões ocasionais sobre pesquisa, metodologia e temas adjacentes.

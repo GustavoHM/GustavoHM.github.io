@@ -7,8 +7,20 @@ listing:
     sort: "date desc"
     fields: [title, author, date, description]
     date-format: "YYYY"
-  - id: publications
-    contents: publications.yml
+  - id: theses
+    contents: theses.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: articles
+    contents: articles.yml
+    type: default
+    sort: "date desc"
+    fields: [title, author, date, description]
+    date-format: "YYYY"
+  - id: abstracts
+    contents: abstracts.yml
     type: default
     sort: "date desc"
     fields: [title, author, date, description]
@@ -28,9 +40,19 @@ My research sits at the intersection of applied economics and law, with a curren
 :::{#working-papers}
 :::
 
-## Publications
+## Theses & completion works
 
-:::{#publications}
+:::{#theses}
+:::
+
+## Articles
+
+:::{#articles}
+:::
+
+## Extended abstracts & proceedings
+
+:::{#abstracts}
 :::
 
 ## Other output

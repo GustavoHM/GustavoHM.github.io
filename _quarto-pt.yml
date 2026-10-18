@@ -8,12 +8,17 @@ project:
 
 website:
   search: false
+  # Rascunhos (draft: true) aparecem nas listagens — útil durante a revisão.
+  # Remover ao publicar a postagem.
+  draft-mode: visible
   navbar:
     left:
       - href: pt/index.qmd
         text: Sobre
       - href: pt/pesquisa/index.qmd
         text: Pesquisa
+      - href: pt/postagens/index.qmd
+        text: Postagens
       - href: pt/ensino.qmd
         text: Ensino
       - href: pt/cv.qmd

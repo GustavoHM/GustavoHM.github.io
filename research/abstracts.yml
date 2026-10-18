@@ -1,15 +1,9 @@
-# Published articles and proceedings. One entry per item; the Research page
-# renders this list automatically. "path" is where the title links to.
+# Extended abstracts and conference proceedings. One entry per item; the Research
+# page renders this list automatically. "path" is where the title links to.
 - title: "Mapeamento da produção científica sobre Karl Marx: análise bibliométrica da literatura mundial"
   author: "Gustavo H. Moreira, C. M. Leitzke, Daniel A. P. Uhr"
   date: 2025-01-01
   description: "Extended abstract — XXVII Encontro de Pós-Graduação, Semana Integrada de Inovação, Ensino, Pesquisa e Extensão, UFPel, Pelotas-RS, 2025."
-  path: "http://lattes.cnpq.br/6547677638808247"
-
-- title: "Desenvolvimento da Oralidade no Ensino de Língua Japonesa Híbrido: uma revisão bibliográfica com base na aprendizagem por metodologias ativas"
-  author: "Gustavo H. Moreira, M. Yokomizo, Nelci V. de Lima, Lilian Yamamoto"
-  date: 2022-10-28
-  description: "Revista Pluri Discente, pp. 96–109, October 2022."
   path: "http://lattes.cnpq.br/6547677638808247"
 
 - title: "Ensino de Línguas Estrangeiras e Educação Ambiental — o caso do método Marugoto"
@@ -22,10 +16,4 @@
   author: "Gustavo H. Moreira, G. P. S. Cordeiro"
   date: 2019-01-02
   description: "Extended abstract — 5ª Jornada de Estudos da Linguagem, Pelotas-RS, 2019."
-  path: "http://lattes.cnpq.br/6547677638808247"
-
-- title: "A Importância do Professor Tutor na EAD: o caso da Uniderp Anhanguera Polo Pelotas"
-  author: "B. M. Fonseca, C. H. Moreira, Gustavo H. Moreira"
-  date: 2013-01-01
-  description: "Cuadernos de Educación y Desarrollo, vol. V, 2013."
   path: "http://lattes.cnpq.br/6547677638808247"

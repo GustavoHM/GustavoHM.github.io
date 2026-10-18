@@ -10,9 +10,7 @@ profile:
 website:
   title: "Gustavo Hoffmann Moreira"
   description: "Personal academic website of Gustavo Hoffmann Moreira — PhD candidate in Organizations and Markets (Applied Economics), UFPel."
-  # After creating the GitHub repository, set this to your GitHub Pages URL,
-  # e.g. https://USERNAME.github.io or https://USERNAME.github.io/REPO
-  # site-url: https://USERNAME.github.io
+  site-url: https://gustavohm.github.io
 
 execute:
   freeze: auto

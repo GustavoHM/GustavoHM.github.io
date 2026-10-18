@@ -1,0 +1,58 @@
+---
+title: "IA e o novo workflow da ciência: automatizar os meios, reaprender os fins"
+description: "A partir do ensaio de Terence Tao no Congresso Internacional de Matemáticos de 2026, algumas reflexões sobre o que muda no trabalho do pesquisador em economia aplicada quando as tarefas tediosas começam a desaparecer."
+author: "Gustavo Hoffmann Moreira"
+date: 2026-08-23
+categories: [inteligência artificial, metodologia, workflow]
+draft: true
+---
+
+Terence Tao publicou esta semana um [ensaio notável](https://arxiv.org/abs/2608.16753), baseado em sua palestra no Congresso Internacional de Matemáticos de 2026, sobre como a comunidade matemática deveria responder à chegada de ferramentas de IA capazes de executar tarefas de pesquisa. Embora o ensaio seja sobre matemática, a estrutura do argumento se aplica quase literalmente às ciências empíricas — e, em particular, ao tipo de pesquisa que faço em economia aplicada.
+
+## O argumento do Tao
+
+O ponto de partida é uma escolha metodológica interessante: Tao se recusa a debater *se* a IA será capaz de fazer pesquisa. Em vez disso, propõe uma "hipótese de trabalho" — assuma que ferramentas de IA serão, em breve, capazes de executar uma fração razoável das tarefas de pesquisa, com custo e supervisão razoáveis — e pergunta o que se segue *condicionalmente* a ela. O debate sobre capacidade é ortogonal à pergunta que importa: **quais são, afinal, os objetivos e valores da pesquisa?**
+
+A resposta que ele constrói é enganosamente simples. Tomemos a meta óbvia — "resolver o máximo de problemas em aberto" — e a submetamos a objeções sucessivas. Resolver problemas não basta: é preciso *verificar* as soluções. Verificar não basta: é preciso que sejam *comunicadas* de forma compreensível. Comunicar não basta: é preciso que a comunidade as *digira e aceite*. E mesmo isso não basta: os resultados precisam ser *canonizados* — incorporados à teoria definitiva, aos livros-texto, ao ferramental da geração seguinte.
+
+O que começou como uma única seta (problema → solução) termina como uma esteira de cinco estágios, dos quais apenas o primeiro — a geração — era um objetivo explícito da comunidade. E é exatamente o primeiro estágio que a IA automatiza. A conclusão de Tao é que estamos saindo de uma era de **escassez de provas** para uma era de **abundância de provas**, e que nossas instituições — periódicos, revisão por pares, critérios de contratação e promoção — foram todas desenhadas sob o pressuposto da escassez.
+
+## A tradução para a economia aplicada
+
+Quem trabalha com pesquisa empírica reconhece a mesma esteira, com nomes diferentes:
+
+1. **Geração**: coletar e limpar dados, escrever código, rodar especificações;
+2. **Verificação**: checar a consistência dos dados, a correção do código, a robustez dos resultados;
+3. **Exposição**: escrever o paper de forma que a estratégia de identificação e as limitações fiquem claras;
+4. **Aceitação**: revisão por pares, apresentações, replicação por outros pesquisadores;
+5. **Canonização**: o resultado vira consenso, entra nos manuais e passa a informar política pública.
+
+Historicamente, o primeiro estágio consumia a maior parte do tempo do pesquisador — e funcionava como filtro. Dominar o processamento de dados e a implementação econométrica era um sinal imperfeito, mas útil, de competência nos estágios seguintes. Era o que se poderia chamar de *proxy*: como os objetivos estavam correlacionados, medir um deles servia de aproximação para os demais. Tao invoca a [lei de Goodhart](https://en.wikipedia.org/wiki/Goodhart%27s_law) para descrever o que acontece quando o proxy vira alvo: "quando uma medida se torna uma meta, ela deixa de ser uma boa medida". A IA é uma máquina de Goodhart — ela otimiza a aparência do resultado, não a propriedade que o resultado deveria indicar.
+
+## Exemplos das minhas áreas
+
+Deixe-me ser concreto, com exemplos das áreas em que trabalho.
+
+**Jurimetria e análise de decisões judiciais.** Grande parte do custo de um estudo jurimétrico sempre esteve nas etapas intermediárias: extrair, classificar e tabular informações de processos e decisões, muitas vezes documento a documento. Hoje, modelos de linguagem classificam em horas um corpus de decisões que levaria meses de codificação manual — identificando a classe processual, o pedido, o dispositivo, o resultado. A tarefa tediosa não era o objetivo; era apenas o caminho. O que permanece escasso, e humano, é a pergunta: *o que exatamente medir numa decisão judicial para que ela diga algo sobre o efeito de uma lei ou de uma política judiciária?* Definir a variável certa continua exigindo conhecimento jurídico e econométrico que nenhum classificador automático fornece.
+
+**Pesquisa jurídica.** Na pesquisa dogmática, a esteira de Tao também se aplica. As etapas tediosas são conhecidas de quem já escreveu uma monografia: levantamento bibliográfico, busca de jurisprudência, leitura e resumo de ementas, mapeamento de divergências entre tribunais. Ferramentas de IA já fazem boa parte disso — e é justamente aqui que a distinção entre os estágios se torna vital. A *geração* de texto jurídico ficou barata, mas a *verificação* ficou mais exigente, não menos. Os casos documentados já se acumulam. O mais célebre é [*Mata v. Avianca*](https://caselaw.findlaw.com/court/us-dis-crt-sd-new-yor/2335142.html) (S.D.N.Y., 2023): dois advogados apresentaram uma petição citando seis precedentes inexistentes gerados pelo ChatGPT — e, confrontados pelo tribunal, insistiram no erro, chegando a produzir "trechos" falsos das decisões; o juiz P. Kevin Castel aplicou multa de US$ 5 mil. No Brasil, o TST já aplicou multas por litigância de má-fé em casos semelhantes: a [6ª Turma multou em 1% do valor da causa](https://convergenciadigital.com.br/inovacao/tst-ve-ma-fe-e-multa-empresa-de-telecom-e-advogado-por-jurisprudencia-falsa-criada-por-inteligencia-artificial/) uma empresa e seu advogado que sustentaram uma tese com precedentes provavelmente gerados por IA, e a [1ª Turma aplicou multa de 2%](https://calculaprazo.com.br/blog/jurisprudencia-fake-e-uso-de-ia-quando-o-tst-aplica-multa-por-litigancia-de-ma-fe) num caso em que a parte reiterou o uso de jurisprudência falsa mesmo após alertada. Há inclusive uma [base de dados dedicada a catalogar esses episódios](https://www.damiencharlotin.com/hallucinations/) no mundo inteiro — já são centenas. O padrão é sempre o mesmo: o texto vem com fluidez e formatação perfeitas, o que torna o erro difícil de perceber. Cada citação precisa ser conferida na fonte oficial — o que é trabalho humano, ou pelo menos humanamente supervisionado. E o que permanece irredutivelmente humano é o núcleo normativo do ofício: interpretar, construir o argumento, distinguir a *ratio decidendi* do *obiter dictum*, decidir qual tese defender. A abundância de texto jurídico plausível torna ainda mais valioso quem sabe separar argumento de verossimilhança.
+
+**Economia da energia.** Quem pesquisa o setor elétrico convive com bases grandes e heterogêneas de reguladores, operadores e comercializadoras — harmonização de séries, painéis desbalanceados, mudanças de metodologia de medição ao longo do tempo. Montar e documentar esse painel é exatamente o tipo de tarefa que a IA já acelera de forma dramática: escrever e depurar o código de tratamento, cruzar fontes, gerar a documentação do pipeline. Mas a IA não decide qual é a pergunta economicamente relevante — por exemplo, como o desenho de um leilão de energia ou de uma tarifa afeta investimento e preço — nem qual estratégia de identificação é defensável diante das instituições específicas que geraram os dados.
+
+**Microeconometria aplicada.** Aqui mora talvez o maior risco análogo ao que Tao descreve. Se gerar especificações ficou barato, o que impede um dilúvio de resultados "significativos"? A versão econométrica da abundância de provas é a abundância de regressões: *p*-hacking e *specification searching* em escala industrial, com a aparência de robustez que a lei de Goodhart prevê. A resposta não é usar menos IA, mas deslocar o peso do nosso trabalho para os estágios que ela não resolve: verificação independente, registros prévios de análise, replicação e, sobretudo, julgamento sobre desenho de pesquisa.
+
+**Teoria de jogos e design de mecanismos.** Das minhas áreas, esta é a mais próxima da matemática do ensaio — e talvez a primeira a sentir a mudança. Derivar equilíbrios, verificar a álgebra de uma prova de existência, simular o comportamento de um leilão sob regras alternativas: tudo isso já é acelerado por ferramentas de IA, e o próprio Tao prevê que a geração e a verificação formal de provas ficarão cada vez mais baratas. O que não fica barato é a modelagem: decidir *qual jogo* captura a instituição real que se quer estudar, que suposições sobre informação e preferências são defensáveis, que conceito de equilíbrio faz sentido para o problema. Há ainda uma ironia útil: design de mecanismos é, em essência, a arte de criar regras robustas a agentes que tentam explorá-las — ou seja, é a lei de Goodhart tratada como problema técnico. Num mundo em que os agentes econômicos também usam IA para encontrar brechas nas regras, essa robustez deixa de ser um luxo teórico.
+
+**Ensino de japonês.** Na sala de aula, a mesma lógica aparece com outra roupagem. Preparar listas de exercícios, montar frases de exemplo ajustadas ao nível da turma, transcrever áudios, produzir versões simplificadas de um texto: são tarefas que consumiam boa parte do tempo de preparação e que a IA já faz competentemente. O que ela não faz é diagnosticar *por que* um aluno específico trava numa estrutura, dar feedback sobre a produção oral em tempo real, ou sustentar a motivação de quem estuda uma língua por anos. E há um paralelo direto com um alerta do ensaio: o objetivo de formar um aluno não é alcançado produzindo lição de casa correta. Se o aluno terceiriza os exercícios para a IA, o proxy — a tarefa entregue — deixa de medir o aprendizado, e o professor precisa redesenhar a avaliação em torno do que só se revela em interação. Aqui, mais do que em qualquer outra área, a resposta não é incorporar a IA ao workflow do aluno, mas redefinir o que estamos medindo.
+
+## Um workflow possível
+
+O ensaio termina com recomendações da [Declaração de Leiden sobre IA e Matemática](https://leidendeclaration.ai/) (junho de 2026), que traduzo livremente para o nosso ofício:
+
+- **Declare o uso das ferramentas.** O cenário a evitar a todo custo é o uso encoberto de IA por medo de julgamento dos pares. Transparência sobre o que foi gerado, verificado e escrito por quem.
+- **Facilite o trabalho de quem revisa.** Código reproduzível, documentação do pipeline de dados, referências precisas. Se a geração ficou barata, a verificação virou o recurso escasso — não a desperdice.
+- **Assuma a autoria.** Crédito e responsabilidade continuam humanos. Tao propõe uma regra prática que adoto como minha: *se o autor não consegue dar uma palestra clara, em nível de especialista, sobre o próprio resultado, o resultado não está pronto para publicação*.
+
+A tentação é tratar a IA como uma ameaça à pesquisa ou como um atalho para produtividade. O ensaio do Tao sugere uma terceira leitura, que me parece a correta: as tarefas tediosas eram meios, não fins. Automatizá-las não elimina o trabalho do pesquisador — devolve a ele a obrigação de fazer a parte que sempre foi a mais importante, e que a escassez de tempo nos permitia adiar: escolher boas perguntas, verificar com ceticismo, explicar com clareza e construir conhecimento que a comunidade consiga digerir.
+
+O workflow que precisamos encontrar não é o que produz mais. É o que continua produzindo *entendimento* quando produzir deixou de ser difícil.
