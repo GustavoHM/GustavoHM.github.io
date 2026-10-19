@@ -17,7 +17,7 @@ about:
       href: http://lattes.cnpq.br/6547677638808247
     - icon: linkedin
       text: LinkedIn
-      href: http://www.linkedin.com/pub/gustavo-hoffmann-moreira/29/109/210
+      href: https://www.linkedin.com/in/gustavo-hoffmann-moreira-21010929
     - icon: github
       text: GitHub
       href: https://github.com/GustavoHM
