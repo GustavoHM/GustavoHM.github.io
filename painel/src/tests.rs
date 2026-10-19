@@ -111,6 +111,13 @@ fn publish_end_to_end() {
     };
     posts::save(&site, &mut post).unwrap();
     assert_eq!(publish::unsent_subdirs(&site, "pt/postagens"), vec![post.slug.clone()]);
+    // um commit feito fora do painel aparece na confirmação e vai junto
+    assert!(publish::unpushed_commits(&site).is_empty());
+    fs::write(site.join("styles.css"), "/* mudança local */\n").unwrap();
+    sh(&site, &["git", "commit", "-qam", "Mudança feita no terminal"]);
+    let pending = publish::unpushed_commits(&site);
+    assert_eq!(pending.len(), 1);
+    assert!(pending[0].ends_with(" Mudança feita no terminal"), "{pending:?}");
     run_job(&site, Job {
         paths: vec![post.rel_dir()],
         renders: vec![("pt".into(), format!("{}/index.qmd", post.rel_dir()))],
@@ -118,13 +125,14 @@ fn publish_end_to_end() {
         url: None,
     });
     assert!(publish::unsent_subdirs(&site, "pt/postagens").is_empty());
+    assert!(publish::unpushed_commits(&site).is_empty(), "o push leva os dois commits");
 
     let mut page = pages::load(&site, &m, "pesquisa").unwrap();
     let original = page.sides[0].body.clone();
     page.sides[0].body = original.replace(":::{#articles}", "");
     assert!(pages::save(&site, &page).unwrap_err().contains("#articles"));
     page.sides[0].body = original + "\nExtra line.\n";
-    page.sides[1].title = "Pesquisa acadêmica".into();
+    page.sides.iter_mut().find(|s| s.lang == "pt").unwrap().title = "Pesquisa acadêmica".into();
     pages::save(&site, &page).unwrap();
     run_job(&site, Job {
         paths: page.sides.iter().map(|s| s.rel.clone()).collect(),
@@ -136,21 +144,25 @@ fn publish_end_to_end() {
     let mut list = lists::load(&site, &m, "artigos").unwrap();
     let n = list.len();
     list.add("2026-10-01");
-    list.langs[0].file.items[0].set("title", "New article");
-    list.langs[1].file.items[0].set("title", "Novo artigo");
+    for l in &mut list.langs {
+        let title = if l.lang == "pt" { "Novo artigo".to_string() } else { format!("New article ({})", l.lang) };
+        l.file.items[0].set("title", &title);
+    }
     lists::save(&site, &list).unwrap();
     assert_eq!(lists::load(&site, &m, "artigos").unwrap().len(), n + 1);
 
     let mut wp = papers::new_paper(&m, "2026-10-18".into());
     wp.title = "A test paper".into();
     wp.authors = "Gustavo Hoffmann Moreira, Coauthor Name".into();
-    wp.translations[0].title = "Um paper de teste".into();
+    let pt = wp.translations.iter().position(|t| t.lang == "pt").unwrap();
+    wp.translations[pt].title = "Um paper de teste".into();
     papers::save(&site, &mut wp).unwrap();
     let back = papers::load(&site, &m, &wp.slug).unwrap();
-    assert_eq!(back.translations[0].title, "Um paper de teste");
+    assert_eq!(back.translations[pt].title, "Um paper de teste");
     assert_eq!(back.authors, "Gustavo Hoffmann Moreira, Coauthor Name");
     let mut paths: Vec<String> = list.langs.iter().map(|l| l.rel.clone()).collect();
-    paths.extend([wp.rel_qmd(), wp.rel_files(), wp.translations[0].list.clone()]);
+    paths.extend([wp.rel_qmd(), wp.rel_files()]);
+    paths.extend(wp.translations.iter().map(|t| t.list.clone()));
     let log = run_job(&site, Job {
         paths,
         renders: vec![("en".into(), wp.rel_qmd()), ("en".into(), "research/index.qmd".into()), ("pt".into(), "pt/pesquisa/index.qmd".into())],
@@ -162,51 +174,53 @@ fn publish_end_to_end() {
     let _ = fs::remove_dir_all(&tmp);
 }
 
-/// Cria o japonês, edita nas três línguas, envia e confere o site gerado.
+/// Cria o coreano a partir do português, edita, envia e confere o site gerado.
 #[test]
-fn add_japanese_and_publish() {
-    let (tmp, site) = copy_site("ja");
+fn add_language_and_publish() {
+    let (tmp, site) = copy_site("ko");
     let m = Manifest::load(&site).unwrap();
-    let labels = languages::nav_labels(&site, &m, "pt", "ja");
-    assert_eq!(labels.iter().map(|(_, l)| l.as_str()).collect::<Vec<_>>(), vec!["プロフィール", "研究", "ブログ", "教育", "履歴書"]);
-    let (changed, warnings) = languages::add(&site, &m, "ja", "日本語", "pt", &labels).unwrap();
+    let before = m.langs.len();
+    let labels = languages::nav_labels(&site, &m, "pt", "ko");
+    assert_eq!(labels.iter().map(|(_, l)| l.as_str()).collect::<Vec<_>>(), vec!["소개", "연구", "글", "강의", "이력서"]);
+    let (changed, warnings) = languages::add(&site, &m, "ko", "한국어", "pt", &labels).unwrap();
     assert!(warnings.is_empty(), "{warnings:?}");
-    assert!(changed.contains(&"_quarto-en.yml".to_string()) && changed.contains(&"_quarto-pt.yml".to_string()));
-    assert!(languages::add(&site, &Manifest::load(&site).unwrap(), "ja", "x", "pt", &[]).is_err());
+    for l in &m.langs {
+        assert!(changed.contains(&languages::profile_file(&l.codigo)), "{changed:?}");
+    }
+    assert!(languages::add(&site, &Manifest::load(&site).unwrap(), "ko", "x", "pt", &[]).is_err());
 
     let m = Manifest::load(&site).unwrap();
-    let ja = m.lang("ja").unwrap();
-    assert_eq!(ja.paginas["sobre"], "ja/index.qmd");
-    assert_eq!(ja.postagens.as_deref(), Some("ja/postagens"));
-    for rel in ja.paginas.values().chain(ja.listas.values()) {
+    assert_eq!(m.langs.len(), before + 1);
+    let ko = m.lang("ko").unwrap();
+    assert_eq!(ko.paginas["sobre"], "ko/index.qmd");
+    assert_eq!(ko.postagens.as_deref(), Some("ko/postagens"));
+    for rel in ko.paginas.values().chain(ko.listas.values()) {
         assert!(site.join(rel).is_file(), "{rel}");
     }
-    assert!(!site.join("ja/postagens/2026-08-23-ia-ciencia-workflow").exists());
+    assert!(!site.join("ko/postagens/2026-08-23-ia-ciencia-workflow").exists());
     let en = fs::read_to_string(site.join("_quarto-en.yml")).unwrap();
-    assert!(en.contains("- text: \"日本語\"\n        href: /ja/"), "{en}");
-    let ja_profile = fs::read_to_string(site.join("_quarto-ja.yml")).unwrap();
-    assert!(ja_profile.contains("output-dir: _site-ja") && ja_profile.contains("lang: ja-JP"), "{ja_profile}");
-    assert!(ja_profile.contains("href: /pt/") && ja_profile.contains("href: /\n") && !ja_profile.contains("href: /ja/"), "{ja_profile}");
+    assert!(en.contains("- text: \"한국어\"\n        href: /ko/"), "{en}");
+    let ko_profile = fs::read_to_string(site.join("_quarto-ko.yml")).unwrap();
+    assert!(ko_profile.contains("output-dir: _site-ko") && ko_profile.contains("lang: ko-KR"), "{ko_profile}");
+    assert!(ko_profile.contains("href: /pt/") && ko_profile.contains("href: /\n") && !ko_profile.contains("href: /ko/"), "{ko_profile}");
 
-    // páginas e listas agora têm três línguas
+    // páginas, listas e papers ganham a língua nova
     let mut page = pages::load(&site, &m, "sobre").unwrap();
-    assert_eq!(page.sides.iter().map(|s| s.lang.as_str()).collect::<Vec<_>>(), vec!["en", "pt", "ja"]);
-    page.sides[2].body = "応用経済学の博士課程に在籍しています。".into();
+    assert_eq!(page.sides.last().unwrap().lang, "ko");
+    page.sides.last_mut().unwrap().body = "응용경제학 박사과정에 재학 중입니다.".into();
     pages::save(&site, &page).unwrap();
-    let list = lists::load(&site, &m, "artigos").unwrap();
-    assert_eq!(list.langs.len(), 3);
+    assert_eq!(lists::load(&site, &m, "artigos").unwrap().langs.len(), before + 1);
     let mut wp = papers::load(&site, &m, "dg-tariff-incidence-brazil").unwrap();
-    assert_eq!(wp.translations.len(), 2);
-    wp.translations[1].title = "ブラジルにおける分散型発電への最適な料金負担".into();
+    wp.translations.iter_mut().find(|t| t.lang == "ko").unwrap().title = "브라질 분산형 발전에 대한 최적 요금 부담".into();
     papers::save(&site, &mut wp).unwrap();
-    let mut post = posts::Post { lang: "ja".into(), dir: "ja/postagens".into(), title: "最初の投稿".into(), date: "2026-10-18".into(), draft: false, ..Default::default() };
+    let mut post = posts::Post { lang: "ko".into(), dir: "ko/postagens".into(), title: "첫 번째 글".into(), date: "2026-10-18".into(), draft: false, ..Default::default() };
     posts::save(&site, &mut post).unwrap();
     assert!(post.slug.starts_with("2026-10-18-"), "{}", post.slug);
 
     run_job(&site, Job {
-        paths: languages::setup_paths(&m, "ja"),
-        renders: vec![("ja".into(), String::new())],
-        message: "Adiciona a versão em 日本語".into(),
+        paths: languages::setup_paths(&m, "ko"),
+        renders: vec![("ko".into(), String::new())],
+        message: "Adiciona a versão em 한국어".into(),
         url: None,
     });
     // tudo o que a língua nova tocou entrou no commit
@@ -216,13 +230,15 @@ fn add_japanese_and_publish() {
     if publish::quarto_bin().is_some() {
         let out = Command::new("bash").arg("build.sh").current_dir(&site).output().unwrap();
         assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
-        let html = fs::read_to_string(site.join("_site/ja/index.html")).unwrap();
-        for needle in ["lang=\"ja-JP\"", "プロフィール", "応用経済学"] {
-            assert!(html.contains(needle), "falta {needle} em _site/ja/index.html:\n{}", &html[..html.len().min(3000)]);
+        let html = fs::read_to_string(site.join("_site/ko/index.html")).unwrap();
+        for needle in ["lang=\"ko-KR\"", "소개", "응용경제학"] {
+            assert!(html.contains(needle), "falta {needle} em _site/ko/index.html");
         }
-        assert!(fs::read_to_string(site.join("_site/index.html")).unwrap().contains("日本語"));
-        assert!(fs::read_to_string(site.join("_site/pt/index.html")).unwrap().contains("日本語"));
-        assert!(fs::read_to_string(site.join("_site/ja/pesquisa/index.html")).unwrap().contains("ブラジルにおける"));
+        for other in m.langs.iter().filter(|l| l.codigo != "ko") {
+            let index = if other.codigo == m.root().codigo { "_site/index.html".to_string() } else { format!("_site/{}/index.html", other.codigo) };
+            assert!(fs::read_to_string(site.join(&index)).unwrap().contains("한국어"), "{index} sem link para o coreano");
+        }
+        assert!(fs::read_to_string(site.join("_site/ko/pesquisa/index.html")).unwrap().contains("브라질 분산형"));
     }
     let _ = fs::remove_dir_all(&tmp);
 }
@@ -234,12 +250,13 @@ fn site_admin_end_to_end() {
     let m = Manifest::load(&site).unwrap();
 
     // página nova em todas as línguas, no fim do menu
-    pages::create(&site, &m, "palestras", &["Talks".into(), "Palestras".into()], true).unwrap();
-    assert!(pages::create(&site, &m, "palestras", &["x".into(), "y".into()], true).is_err());
+    let titles: Vec<String> = m.langs.iter().map(|l| if l.codigo == "pt" { "Palestras".into() } else { format!("Talks {}", l.codigo) }).collect();
+    pages::create(&site, &m, "palestras", &titles, true).unwrap();
+    assert!(pages::create(&site, &m, "palestras", &titles, true).is_err());
     let m = Manifest::load(&site).unwrap();
     assert_eq!(m.lang("pt").unwrap().paginas["palestras"], "pt/palestras.qmd");
     let mut page = pages::load(&site, &m, "palestras").unwrap();
-    page.sides[1].body = "Lista de palestras.".into();
+    page.sides.iter_mut().find(|s| s.lang == "pt").unwrap().body = "Lista de palestras.".into();
     pages::save(&site, &page).unwrap();
 
     // menu: "Talks" sobe para o segundo lugar, CV some, rótulo novo em PT
@@ -249,7 +266,8 @@ fn site_admin_end_to_end() {
         mn.move_row(mn.rows.iter().position(|r| r.key == "palestras").unwrap(), true);
     }
     mn.rows.iter_mut().find(|r| r.key == "cv").unwrap().visible = false;
-    mn.rows.iter_mut().find(|r| r.key == "ensino").unwrap().cells[1].as_mut().unwrap().label = "Aulas".into();
+    let pt_col = mn.langs.iter().position(|c| c == "pt").unwrap();
+    mn.rows.iter_mut().find(|r| r.key == "ensino").unwrap().cells[pt_col].as_mut().unwrap().label = "Aulas".into();
     menu::save(&site, &mn).unwrap();
     let pt = fs::read_to_string(site.join("_quarto-pt.yml")).unwrap();
     assert!(pt.contains("      - href: pt/index.qmd\n        text: Sobre\n      - href: pt/palestras.qmd\n        text: Palestras\n"), "{pt}");
@@ -261,19 +279,20 @@ fn site_admin_end_to_end() {
     // configurações
     let mut st = settings::load(&site, &m).unwrap();
     st.title = "Gustavo H. Moreira".into();
-    st.footers[1].right = Some("Feito com Quarto e com o painel".into());
+    st.footers.iter_mut().find(|f| f.lang == "pt").unwrap().right = Some("Feito com Quarto e com o painel".into());
     fs::write(site.join("foto.png"), include_bytes!("../icone/icone-1024.png")).unwrap();
     st.photo = "foto.png".into();
     st.add_link();
     let last = st.links.len() - 1;
-    st.links[last].icon = "github".into();
-    st.links[last].href = "https://github.com/GustavoHM".into();
-    st.links[last].texts[0].1 = "GitHub".into();
-    st.links[last].texts[1].1 = "GitHub".into();
+    st.links[last].icon = "mastodon".into();
+    st.links[last].href = "https://mastodon.social/@painel".into();
+    for t in &mut st.links[last].texts {
+        t.1 = "Mastodon".into();
+    }
     st.move_link(last, true);
     settings::save(&site, &st).unwrap();
     let about_pt = fs::read_to_string(site.join("pt/index.qmd")).unwrap();
-    assert!(about_pt.contains("image: ../foto.png") && about_pt.contains("- icon: github\n      text: GitHub\n      href: https://github.com/GustavoHM\n    - icon: envelope"), "{about_pt}");
+    assert!(about_pt.contains("image: ../foto.png") && about_pt.contains("- icon: mastodon\n      text: Mastodon\n      href: https://mastodon.social/@painel\n    - icon: envelope"), "{about_pt}");
     assert_eq!(settings::load(&site, &m).unwrap(), {
         let mut s2 = st.clone();
         // as linhas brutas mudam ao salvar; compara só os valores
@@ -304,7 +323,7 @@ fn site_admin_end_to_end() {
         let out = Command::new("bash").arg("build.sh").current_dir(&site).output().unwrap();
         assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
         let pt_html = fs::read_to_string(site.join("_site/pt/index.html")).unwrap();
-        for needle in ["Palestras", "Aulas", "Feito com Quarto e com o painel", "github.com/GustavoHM", "../foto.png"] {
+        for needle in ["Palestras", "Aulas", "Feito com Quarto e com o painel", "mastodon.social/@painel", "../foto.png"] {
             assert!(pt_html.contains(needle), "falta {needle} em pt/index.html");
         }
         assert!(!pt_html.contains("pt/cv.html\" class=\"nav-link"), "CV deveria ter saído do menu");

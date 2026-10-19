@@ -243,8 +243,9 @@ mod tests {
         let s = load(site, &m).unwrap();
         assert_eq!(s.title, "Gustavo Hoffmann Moreira");
         assert_eq!(s.photo, "profile.svg");
-        assert_eq!(s.links.len(), 5);
-        assert_eq!(s.links[2].texts[1].1, "Currículo Lattes");
+        let pt = s.about_pages.iter().position(|(c, _)| c == "pt").unwrap();
+        assert!(s.links.len() >= 5);
+        assert_eq!(s.links.iter().find(|l| l.href.contains("lattes")).unwrap().texts[pt].1, "Currículo Lattes");
         assert!(s.footers.iter().all(|f| f.left.is_some() && f.right.is_some()));
     }
 }

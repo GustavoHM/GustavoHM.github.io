@@ -62,7 +62,32 @@ impl Manifest {
         if m.langs.is_empty() {
             return Err(format!("{FILE} não lista nenhuma língua."));
         }
+        m.validate()?;
         Ok(m)
+    }
+
+    /// Recusa códigos e caminhos que levariam o painel a ler ou gravar fora
+    /// da pasta do site (absolutos, com `..`, dentro de `.git` etc.). Assim um
+    /// _idiomas.toml estranho, de um site que não é seu, não vira uma forma
+    /// de alterar outros arquivos do computador.
+    pub fn validate(&self) -> Result<(), String> {
+        let mut codes = vec![];
+        for l in &self.langs {
+            if !crate::languages::valid_code(&l.codigo) {
+                return Err(format!("{FILE}: código de língua inválido: “{}”.", l.codigo));
+            }
+            if codes.contains(&&l.codigo) {
+                return Err(format!("{FILE}: a língua “{}” aparece duas vezes.", l.codigo));
+            }
+            codes.push(&l.codigo);
+            let paths = l.paginas.values().chain(l.listas.values()).chain(&l.postagens).chain(&l.papers).chain(&l.lista_papers);
+            for p in paths {
+                if !safe_rel_path(p) {
+                    return Err(format!("{FILE} ({}): caminho não permitido: “{p}”. Use caminhos relativos dentro do site, sem “..”.", l.codigo));
+                }
+            }
+        }
+        Ok(())
     }
 
     pub fn root(&self) -> &Lang {
@@ -90,6 +115,16 @@ impl Manifest {
         self.root().papers.as_deref()
     }
 
+}
+
+/// Caminho relativo seguro dentro do site: sem raiz, sem `..`, sem `\\`,
+/// sem partes vazias ou ocultas (como `.git`).
+pub fn safe_rel_path(p: &str) -> bool {
+    !p.is_empty()
+        && !p.starts_with('/')
+        && !p.contains('\\')
+        && !p.contains(':')
+        && p.split('/').all(|part| !part.is_empty() && part != ".." && !part.starts_with('.'))
 }
 
 /// Páginas que o site precisa e que o painel não deixa remover.
@@ -228,13 +263,26 @@ mod tests {
         assert_eq!(m.root().codigo, "en");
         assert_eq!(m.page_keys(), vec!["sobre", "pesquisa", "postagens", "ensino", "cv"]);
         assert_eq!(m.list_keys(), vec!["artigos", "resumos", "conclusao", "outros"]);
+        assert!(safe_rel_path("pt/pesquisa/index.qmd") && safe_rel_path("cv.qmd"));
+        for bad in ["", "/etc/passwd", "../x.qmd", "pt/../../x", ".git/config", "pt//x", "C:\\x", "pt\\..\\x", "pt/.ssh/x"] {
+            assert!(!safe_rel_path(bad), "{bad}");
+        }
+        let mut evil = m.clone();
+        evil.langs[1].paginas.insert("x".into(), "../../.zshrc".into());
+        assert!(evil.validate().unwrap_err().contains("não permitido"));
+        let mut evil = m.clone();
+        evil.langs[1].codigo = "../pt".into();
+        assert!(evil.validate().is_err());
         let text = std::fs::read_to_string(site.join(FILE)).unwrap();
         let added = edit_pages_line(&text, "pt", "contato", Some("pt/contato.qmd")).unwrap();
         assert!(added.contains("cv = \"pt/cv.qmd\", contato = \"pt/contato.qmd\" }"));
         assert_eq!(edit_pages_line(&added, "pt", "contato", None).unwrap(), text);
         // o manifesto inicial deste site encontra as mesmas línguas e páginas
         let boot: Manifest = toml::from_str(&bootstrap(site).unwrap()).unwrap();
-        assert_eq!(boot.langs.iter().map(|l| l.codigo.as_str()).collect::<Vec<_>>(), vec!["en", "pt"]);
+        let mut expected: Vec<&str> = m.langs[1..].iter().map(|l| l.codigo.as_str()).collect();
+        expected.sort();
+        expected.insert(0, "en");
+        assert_eq!(boot.langs.iter().map(|l| l.codigo.as_str()).collect::<Vec<_>>(), expected);
         assert_eq!(boot.root().paginas["sobre"], "index.qmd");
         assert_eq!(boot.root().paginas["research"], "research/index.qmd");
         assert_eq!(boot.lang("pt").unwrap().postagens.as_deref(), Some("pt/postagens"));

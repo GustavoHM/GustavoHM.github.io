@@ -93,6 +93,13 @@ pub fn deleted_files(site: &Path) -> Vec<String> {
     git_out(site, &["ls-files", "--deleted"]).lines().filter(|l| l.ends_with(".qmd")).map(str::to_string).collect()
 }
 
+/// Commits locais que ainda não estão no GitHub ("hash assunto"). Todo
+/// envio dá push do main inteiro, então eles vão junto.
+pub fn unpushed_commits(site: &Path) -> Vec<String> {
+    let range = if git_out(site, &["rev-parse", "--abbrev-ref", "@{upstream}"]).is_empty() { "origin/main..HEAD" } else { "@{upstream}..HEAD" };
+    git_out(site, &["log", "--format=%h %s", range]).lines().map(str::to_string).collect()
+}
+
 /// Lê `site-url` do _quarto.yml.
 pub fn site_url(site: &Path) -> Option<String> {
     let cfg = std::fs::read_to_string(site.join("_quarto.yml")).ok()?;

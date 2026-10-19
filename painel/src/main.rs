@@ -324,6 +324,8 @@ struct App {
     ask: Option<Ask>,
     lang_form: Option<LangForm>,
     page_form: Option<PageForm>,
+    /// Commits locais que iriam junto no próximo push (lidos ao abrir a confirmação).
+    ask_commits: Option<Vec<String>>,
     md_cache: CommonMarkCache,
 }
 
@@ -372,6 +374,7 @@ impl App {
             ask: None,
             lang_form: None,
             page_form: None,
+            ask_commits: None,
             md_cache: CommonMarkCache::default(),
         };
         app.refresh();
@@ -684,6 +687,24 @@ fn md_preview(ui: &mut egui::Ui, id: &str, cache: &mut CommonMarkCache, base_dir
 fn publish_button(ui: &mut egui::Ui, label: &str, enabled: bool) -> bool {
     let btn = egui::Button::new(RichText::new(label).strong().color(Color32::WHITE)).fill(BLUE).min_size([0.0, 28.0].into());
     ui.add_enabled(enabled, btn).clicked()
+}
+
+/// Aviso, na confirmação de envio, dos commits locais que vão junto no push.
+fn other_commits(ui: &mut egui::Ui, commits: &[String]) {
+    if commits.is_empty() {
+        return;
+    }
+    ui.add_space(8.0);
+    let msg = match commits.len() {
+        1 => "Atenção: 1 commit que ainda não foi enviado ao GitHub também vai junto (o envio publica o main inteiro):".to_string(),
+        n => format!("Atenção: {n} commits que ainda não foram enviados ao GitHub também vão junto (o envio publica o main inteiro):"),
+    };
+    ui.colored_label(ORANGE, msg);
+    egui::ScrollArea::vertical().id_salt("other-commits").max_height(140.0).show(ui, |ui| {
+        for c in commits {
+            ui.label(RichText::new(c).monospace().size(12.0));
+        }
+    });
 }
 
 fn status_badge(ui: &mut egui::Ui, color: Color32, label: &str) {
@@ -1220,6 +1241,12 @@ impl App {
             Ask::PublishLang(code) => self.lang_name(code),
             _ => String::new(),
         };
+        let pushes = matches!(ask, Ask::Publish | Ask::PublishLang(_) | Ask::RemovePage(_));
+        if pushes && self.ask_commits.is_none() {
+            self.ask_commits = Some(self.site.as_deref().map(publish::unpushed_commits).unwrap_or_default());
+        }
+        let others = self.ask_commits.clone().unwrap_or_default();
+        let ask = self.ask.as_ref().unwrap();
         let modal = egui::Modal::new(egui::Id::unique("ask")).show(ctx, |ui| {
             ui.set_max_width(480.0);
             let ok = match ask {
@@ -1236,6 +1263,7 @@ impl App {
                     for p in &paths {
                         ui.label(RichText::new(p).monospace().size(12.0));
                     }
+                    other_commits(ui, &others);
                     "Enviar"
                 }
                 Ask::Discard(_) => {
@@ -1249,6 +1277,7 @@ impl App {
                     ui.add_space(6.0);
                     ui.label(format!("“{}” sai do site em todas as línguas, junto com o item do menu.", manifest::page_name(key)));
                     ui.weak("Os arquivos são apagados do computador e a remoção é enviada ao site em seguida. Uma página que já foi enviada antes continua no histórico do git.");
+                    other_commits(ui, &others);
                     "Remover e enviar"
                 }
                 Ask::DeleteItem(_) => {
@@ -1272,6 +1301,7 @@ impl App {
             result = Some(false);
         }
         if let Some(yes) = result {
+            self.ask_commits = None;
             match self.ask.take() {
                 Some(Ask::Publish) if yes => self.start_publish(ctx),
                 Some(Ask::PublishLang(code)) if yes => {
